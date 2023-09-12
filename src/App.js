@@ -1,15 +1,20 @@
 import React from 'react'
-import { Header } from './components/header'
-import { Feed } from './components/Feed'
-import { Footer } from './components/Footer'
+import { Homepage } from './components/Homepage'
+import { SearchedMovie } from './components/searchedMovie'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
   return (
-    <div className=' h-screen w-full'>
-      <Header/>
-      <Feed/>
-      <Footer/>
-    </div>
+
+    <BrowserRouter>
+        <div className=' h-screen w-full'>
+          <Routes>
+              <Route path='/' element={<Homepage/>} />
+              <Route path='/search/:searchTerm' element={<SearchedMovie/>} />
+
+          </Routes>
+        </div>
+    </BrowserRouter>
   )
 }
 

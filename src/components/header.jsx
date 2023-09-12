@@ -5,9 +5,12 @@ import image2 from '../assets/Menu.svg';
 import image3 from '../assets/Search.svg'
 import imdbicon from '../assets/imdb.svg'
 import tomatoesicon from '../assets/tomato.svg'
-import playIcon from '../assets/Play.svg'
+import playIcon from '../assets/Play.svg';
+import { useNavigate } from 'react-router-dom';
 export const Header = () => {
     const [headerData, setheaderData] = useState([]);
+    const [ search, setSearch] = useState('')
+    const navigate = useNavigate()
     
     useEffect(()=>{
         fetchData('3/trending/movie/day?language=en-US').then( data=>{
@@ -17,6 +20,15 @@ export const Header = () => {
         }
         )
     },[])
+    const handleSearch =()=>{
+
+      if (search.length > 2) {
+        navigate(`/search/${search}`)
+        setSearch('')
+      } else {
+        alert('search value is not valid!')
+      }
+    }
 
     // console.log(headerData)   
     const {title,overview,vote_average,backdrop_path} = headerData 
@@ -31,8 +43,14 @@ export const Header = () => {
             <img src={image1} />
         </div>
         <div className=' flex'>
-            <input type="text" className=' rounded-lg pl-3 pr-36 py-2 bg-transparent border-4 border-white text-white' placeholder='search a movie' />
-            <button className=' relative right-7'>
+            <input type="text"
+            className=' rounded-lg pl-3 pr-36 py-2 bg-transparent border-4 border-white text-white' 
+            placeholder='search a movie'
+            value={search}
+            onChange={e=>setSearch(e.currentTarget.value)} />
+            <button 
+            className=' relative right-7'
+            onClick={handleSearch}>
                 <img src={image3} alt='search' />
             </button>
         </div>

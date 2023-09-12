@@ -12,7 +12,9 @@ export const Feed = () => {
         fetchData('3/movie/top_rated?language=en-US&page=1').then(data=>{
             // console.log(data)
             const {results} = data
-            setmovies(results)
+            setTimeout(()=>(
+                setmovies(results)
+            ),2000)
         }).catch(e=> console.log(e))
     },[movies])
     console.log(movies)
@@ -38,7 +40,7 @@ export const Feed = () => {
                         <img src={posterUrl} alt={item.title + ' picture'} className=' rounded-lg w-full' />
                         <p className=' text-sm text-slate-500 font-medium my-3'>release date: {item.release_date}</p>
                         <h1 className=' text-2xl font-semibold '>{item.title}</h1>
-                        <div className=' text-black font-medium flex my-4'>
+                        <div className=' text-black font-medium text-sm flex my-4'>
                             <img src={imdbicon} alt="imdb"  />
                             <span>{item.vote_average}/10.0</span>
                             <img src={tomatoesicon} alt="tomatoes" className=' ml-5' />
@@ -48,6 +50,7 @@ export const Feed = () => {
                 )
             }): <div class="loader-container">
                     <div class="loader"></div>
+                    <span className=' font-medium text-blue-500'>loading movies...</span>
                 </div>}
         </div>
     </div>
