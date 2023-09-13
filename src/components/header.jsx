@@ -37,14 +37,14 @@ export const Header = () => {
     const percentage = vote_average/0.1
   return (
     <header className=' w-full h-[570px] '>
-        <img src={posterUrl} className=' w-full h-header-h relative z-10' />
-      <nav className='px-8 py-7 flex items-center justify-between relative z-20 bottom-[530px] '>
+        <img src={posterUrl} className=' mobile:w-full h-header-h tablet:relative z-10' />
+      <nav className='tablet:px-8 tablet:py-7 flex tablet:flex-row mobile:flex-col items-center justify-between relative z-20 bottom-[530px] '>
         <div>
-            <img src={image1} />
+            <img src={image1} className=' mobile:mb-5 tablet:mb-0' />
         </div>
         <div className=' flex'>
             <input type="text"
-            className=' rounded-lg pl-3 pr-36 py-2 bg-transparent border-4 border-white text-white' 
+            className=' rounded-lg pl-3 tablet:pr-36 py-2 bg-transparent border-4 border-white text-white font-bold' 
             placeholder='search a movie'
             value={search}
             onChange={e=>setSearch(e.currentTarget.value)} />
@@ -54,21 +54,21 @@ export const Header = () => {
                 <img src={image3} alt='search' />
             </button>
         </div>
-        <div className=' flex'>
+        <div className=' tablet:flex mobile:hidden'>
             <a href="#" className=' text-white'>Sign in</a>
             <img src={image2} alt='menu' />
         </div>
       </nav>
-      <div className=' relative z-20 bottom-[530px] px-8 py-7 w-1/3'>
+      <div className=' relative z-20 bottom-[530px] px-8 py-7 tabelt:w-1/3 mobile:w-full'>
         <h1 className=' text-3xl font-semibold text-white'>{title}</h1>
-        <div className=' text-white flex my-4'>
-            <img src={imdbicon} alt="imdb"  />
+        <div className=' text-white flex my-4 font-medium'>
+            <img src={imdbicon} alt="imdbicon"  />
             <span>{vote_average}/10.0</span>
-            <img src={tomatoesicon} alt="tomatoes" className=' ml-5' />
+            <img src={tomatoesicon} alt="tomatoesicon" className=' ml-5' />
             <span>{percentage.toFixed(0)}%</span>
         </div>
         <div>
-            <p className=' text-white font-medium mb-2'>{overview}</p>
+            <p className=' text-white font-medium mb-2 '>{overview}</p>
             <button className=' flex text-white font-semibold bg-pink-600 rounded-lg px-5 py-2'>
                 <img src={playIcon} alt="play-icon" srcset="" />
                 watch trailer

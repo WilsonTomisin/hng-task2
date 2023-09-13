@@ -21,7 +21,7 @@ export const MovieDetails = () => {
   return (
     <div className=' w-auto h-auto text-black'>
       
-      <img src={backDropUrl} alt="" className=' w-full h-80' />
+      <img src={backDropUrl} alt={`${title} image`} className=' mobile:w-full h-80' />
       <div className=' py-10 tablet:px-8 flex justify-between'>
         <div className=' w-3/4 tablet:text-left px-5'>
             <h1 className=' text-3xl font-bold pb-3' data-testid='movie-title'>{title}</h1>
@@ -41,9 +41,9 @@ export const MovieDetails = () => {
             <div>
               <span className=' mr-3 font-medium'>Genres:</span>
               {genres?.map((item,index)=>{
-                const margin = index == 1 ? 'mx-4' : '';
+                // const margin = index == 1 ? 'mx-4' : '';
                 return (
-                <span key={item.id} className={`${margin} border-2 border-black rounded-lg px-4 py-1`} >
+                <span key={item.id} className={`tablet:mx-4 tablet:inline-block mobile:block border-2 border-black rounded-lg px-4 py-1`} >
                   {item.name}
                 </span>
                 )

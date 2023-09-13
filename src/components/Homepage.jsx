@@ -5,7 +5,7 @@ import { Footer } from './Footer'
 
 export const Homepage = () => {
   return (
-    <div>
+    <div className=''>
       <Header/>
       <Feed/>
       <Footer/>

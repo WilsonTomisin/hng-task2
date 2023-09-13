@@ -7,9 +7,6 @@ import '../App.css'
 
 export const SearchedMovie = () => {
     const [searchedVideos, setsearchedVideos] = useState([])
-    
-
-
     const { searchTerm} = useParams()
     useEffect(()=>{
         fetchData(`/3/search/movie?query=${searchTerm}`).then(data=>{
@@ -19,12 +16,12 @@ export const SearchedMovie = () => {
         }).catch()
     },[searchTerm])
   return (
-    <div className=' px-11 py-6 '>
+    <div className=' tablet:px-11 mobile:px-3 py-6 '>
         <h1 className=' text-4xl font-bold text-blue-500 '>
              showing search results for:
               <span className=' text-red-600'> {searchTerm}</span>
         </h1>
-        <div className=' grid grid-cols-4 gap-3 py-11'>
+        <div className=' grid tablet:grid-cols-3 laptop:grid-cols-4 gap-3  py-11'>
             {searchedVideos.length > 1 ? searchedVideos.map((item,index)=>{
                 const posterPath = item.poster_path
                 const posterUrl = `https://image.tmdb.org/t/p/w500${posterPath}`

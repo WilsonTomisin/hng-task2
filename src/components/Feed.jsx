@@ -20,7 +20,7 @@ export const Feed = () => {
     },[movies])
     // console.log(movies)
   return (
-    <div className='px-8 py-7'>
+    <div className='px-8 py-7 '>
         <div className=' flex justify-between'>
             <h1 className=' text-4xl font-bold '>Featured Movie</h1>
             <h2 className='flex items-center justify-between text-2xl font-semibold text-pink-600'>
@@ -28,7 +28,7 @@ export const Feed = () => {
                 <IoIosArrowForward/> 
             </h2>
         </div>
-        <div className=' grid grid-cols-4 gap-4 py-16'>
+        <div className=' grid laptop:grid-cols-4 tablet:grid-cols-3 gap-4 py-16'>
             {movies.length > 0 ? movies.map((item,index)=>{
                 const posterPath = item.poster_path
                 const posterUrl = `https://image.tmdb.org/t/p/w200${posterPath}`
@@ -37,7 +37,7 @@ export const Feed = () => {
                 return(
                     index < 10 
                     && 
-                    <div className=' px-5 duration-150 ease-in-out hover:scale-110' data-testid='movie-card'>
+                    <div key={item.id} className=' px-5 duration-150 ease-in-out hover:scale-110' data-testid='movie-card'>
                             <Link to={`/movie/${item.id}`}>
                                 <img src={posterUrl} alt={item.title + ' picture'} className=' rounded-lg w-full' data-testid='movie-poster' />
                                 <p className=' text-sm text-slate-500 font-medium my-3' data-testid='movie-release-date'>
