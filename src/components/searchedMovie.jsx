@@ -1,6 +1,7 @@
 import React,{ useState, useEffect} from 'react'
 import { useParams , Link } from 'react-router-dom'
 import { fetchData } from '../constants/fetchData'
+import { AiFillHeart} from 'react-icons/ai'
 import imdbicon from '../assets/imdb.svg'
 import tomatoesicon from '../assets/tomato.svg'
 import '../App.css'

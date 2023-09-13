@@ -7,18 +7,33 @@ import '../App.css'
 import { Link } from 'react-router-dom';
 
 export const Feed = () => {
-    const [movies, setmovies] = useState([])
+    const [movies, setmovies] = useState([]);
+    const [updatedMovies, setupdatedMovies] = useState(movies)
 
     useEffect(()=>{
         fetchData('3/movie/top_rated?language=en-US&page=1').then(data=>{
-            // console.log(data)
             const {results} = data
             setTimeout(()=>(
                 setmovies(results)
             ),2000)
+        
+        }).then(()=>{
+            setupdatedMovies( movies.map((item)=>{
+                return{
+                    ...item,
+                    isFavourite: false
+                }
+            }))
         }).catch(e=> console.log(e))
-    },[movies])
-    // console.log(movies)
+    },[movies,updatedMovies])
+    // console.log(updatedMovies);
+    const handleFav =(itemId)=>{
+        const newMovie = updatedMovies.map((item)=>(
+            itemId === item.id ? { ...item , isFavourite: !item.isFavourite} : item
+        ))
+        setupdatedMovies(newMovie)
+    }
+    
   return (
     <div className='px-8 py-7 '>
         <div className=' flex justify-between'>
@@ -29,20 +44,22 @@ export const Feed = () => {
             </h2>
         </div>
         <div className=' grid laptop:grid-cols-4 tablet:grid-cols-3 gap-4 py-16'>
-            {movies.length > 0 ? movies.map((item,index)=>{
+            {updatedMovies.length > 0 ? movies.map((item,index)=>{
                 const posterPath = item.poster_path
                 const posterUrl = `https://image.tmdb.org/t/p/w200${posterPath}`
                 const percentage = item.vote_average/0.1
-                // console.log(posterUrl)
+                
+            
                 return(
                     index < 10 
                     && 
                     <div key={item.id} className=' px-5 duration-150 ease-in-out hover:scale-110' data-testid='movie-card'>
-                            <Link to={`/movie/${item.id}`}>
-                                <img src={posterUrl} alt={item.title + ' picture'} className=' rounded-lg w-full' data-testid='movie-poster' />
-                                <p className=' text-sm text-slate-500 font-medium my-3' data-testid='movie-release-date'>
-                                    release date: {item.release_date}
-                                </p>
+                        <Link to={`/movie/${item.id}`}>                        
+                            <img src={posterUrl} alt={item.title + ' picture'} className=' rounded-lg w-full' data-testid='movie-poster' />
+                            <p className=' text-sm text-slate-500 font-medium my-3' data-testid='movie-release-date'>
+                                release date: {item.release_date}
+                            </p>
+                            
                                 <h1 className=' text-2xl font-semibold ' data-testid='movie-title' >{item.title}</h1>
                                 <div className=' text-black font-medium text-sm flex my-4'>
                                     <img src={imdbicon} alt="imdb"  />
@@ -50,7 +67,7 @@ export const Feed = () => {
                                     <img src={tomatoesicon} alt="tomatoes" className=' ml-5' />
                                     <span>{percentage.toFixed(0)}%</span>
                                 </div>
-                            </Link>
+                        </Link>
                     </div>
                     
                 )

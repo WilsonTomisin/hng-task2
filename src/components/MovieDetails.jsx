@@ -1,11 +1,13 @@
 import React,{ useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import { AiFillHeart} from 'react-icons/ai';
 import { fetchData } from '../constants/fetchData';
 import imdbicon from '../assets/imdb.svg'
 import tomatoesicon from '../assets/tomato.svg'
 
 export const MovieDetails = () => {
     const [ movieDetails, setmovieDetails] = useState([])
+    const [isFavourite, setisFavourite] = useState(false)
     const {id} = useParams()
 
     useEffect(()=>{
@@ -18,6 +20,8 @@ export const MovieDetails = () => {
     const posterUrl = `https://image.tmdb.org/t/p/w200${poster_path}`
     const backDropUrl = `https://image.tmdb.org/t/p/w500${backdrop_path}`
     const percentage = vote_average/0.1
+    const isAdded = isFavourite == true ? ' text-red-600 animate-pulse' : 'text-slate-500'
+    const favouriteText = isFavourite == true ? 'added to favourites' : 'add to favourites'
   return (
     <div className=' w-auto h-auto text-black'>
       
@@ -37,6 +41,13 @@ export const MovieDetails = () => {
                 <span>{vote_average}/10.0</span>
                 <img src={tomatoesicon} alt="tomatoes" className=' ml-5' />
                 <span>{percentage.toFixed(0)}%</span>
+                
+            </div>
+            <div className=' flex justify-around items-center w-44 my-3 px-2  py-1 bg-black text-white rounded-lg' onClick={()=>(
+                setisFavourite(preval=>!preval)
+              )}>
+              <AiFillHeart className={` ${isAdded} duration-100 ease-in-out transition-colors text-3xl font-bold`}/>
+              <span className=' font-medium text-sm '>{favouriteText}</span>
             </div>
             <div>
               <span className=' mr-3 font-medium'>Genres:</span>

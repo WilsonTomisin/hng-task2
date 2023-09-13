@@ -13,7 +13,6 @@ const options = {
 export const fetchData = async(endpoint)=>{
     try {
         const {data} = await axios.get(`${dataUrl}/${endpoint}`, options);
-        // console.log( data);
         return data
         
     } catch (error) {

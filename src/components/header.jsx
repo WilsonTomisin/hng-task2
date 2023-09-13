@@ -13,7 +13,7 @@ export const Header = () => {
     const navigate = useNavigate()
     
     useEffect(()=>{
-        fetchData('3/trending/movie/day?language=en-US').then( data=>{
+        fetchData('3/search/movie?query=John Wick: Chapter 3 - Parabellum').then( data=>{
             const {results} = data
             setheaderData(results[0])
             // console.log(data)
@@ -54,12 +54,12 @@ export const Header = () => {
                 <img src={image3} alt='search' />
             </button>
         </div>
-        <div className=' tablet:flex mobile:hidden'>
+        <div className=' tablet:flex items-center mobile:hidden'>
             <a href="#" className=' text-white'>Sign in</a>
             <img src={image2} alt='menu' />
         </div>
       </nav>
-      <div className=' relative z-20 bottom-[530px] px-8 py-7 tabelt:w-1/3 mobile:w-full'>
+      <div className=' relative z-20 bottom-[530px] px-8 py-7 tablet:w-1/3 mobile:w-full'>
         <h1 className=' text-3xl font-semibold text-white'>{title}</h1>
         <div className=' text-white flex my-4 font-medium'>
             <img src={imdbicon} alt="imdbicon"  />
