@@ -15,8 +15,8 @@ export const Header = () => {
     useEffect(()=>{
         fetchData('3/trending/movie/day?language=en-US').then( data=>{
             const {results} = data
-            setheaderData(results[5])
-            // console.log(results[0].backdrop_path)
+            setheaderData(results[0])
+            // console.log(data)
         }
         )
     },[])

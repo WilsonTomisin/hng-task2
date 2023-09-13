@@ -4,6 +4,7 @@ import { IoIosArrowForward} from 'react-icons/io';
 import imdbicon from '../assets/imdb.svg'
 import tomatoesicon from '../assets/tomato.svg'
 import '../App.css'
+import { Link } from 'react-router-dom';
 
 export const Feed = () => {
     const [movies, setmovies] = useState([])
@@ -17,7 +18,7 @@ export const Feed = () => {
             ),2000)
         }).catch(e=> console.log(e))
     },[movies])
-    console.log(movies)
+    // console.log(movies)
   return (
     <div className='px-8 py-7'>
         <div className=' flex justify-between'>
@@ -32,21 +33,26 @@ export const Feed = () => {
                 const posterPath = item.poster_path
                 const posterUrl = `https://image.tmdb.org/t/p/w200${posterPath}`
                 const percentage = item.vote_average/0.1
-                console.log(posterUrl)
+                // console.log(posterUrl)
                 return(
                     index < 10 
                     && 
-                    <div key={index} className=' px-5'>
-                        <img src={posterUrl} alt={item.title + ' picture'} className=' rounded-lg w-full' />
-                        <p className=' text-sm text-slate-500 font-medium my-3'>release date: {item.release_date}</p>
-                        <h1 className=' text-2xl font-semibold '>{item.title}</h1>
-                        <div className=' text-black font-medium text-sm flex my-4'>
-                            <img src={imdbicon} alt="imdb"  />
-                            <span>{item.vote_average}/10.0</span>
-                            <img src={tomatoesicon} alt="tomatoes" className=' ml-5' />
-                            <span>{percentage.toFixed(0)}%</span>
-                        </div>
+                    <div className=' px-5 duration-150 ease-in-out hover:scale-110' data-testid='movie-card'>
+                            <Link to={`/movie/${item.id}`}>
+                                <img src={posterUrl} alt={item.title + ' picture'} className=' rounded-lg w-full' data-testid='movie-poster' />
+                                <p className=' text-sm text-slate-500 font-medium my-3' data-testid='movie-release-date'>
+                                    release date: {item.release_date}
+                                </p>
+                                <h1 className=' text-2xl font-semibold ' data-testid='movie-title' >{item.title}</h1>
+                                <div className=' text-black font-medium text-sm flex my-4'>
+                                    <img src={imdbicon} alt="imdb"  />
+                                    <span>{item.vote_average}/10.0</span>
+                                    <img src={tomatoesicon} alt="tomatoes" className=' ml-5' />
+                                    <span>{percentage.toFixed(0)}%</span>
+                                </div>
+                            </Link>
                     </div>
+                    
                 )
             }): <div class="loader-container">
                     <div class="loader"></div>

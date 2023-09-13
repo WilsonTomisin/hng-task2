@@ -9,7 +9,10 @@ module.exports = {
         'header-h': '550px',
         
       },
-      
+      screens:{
+        'mobile': '320px',
+        'tablet' : '768px'
+      }
     },
   },
   plugins: [],
