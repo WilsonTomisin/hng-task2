@@ -26,3 +26,11 @@
   /* height: 77vh !important; */
   width: 100% !important;
 }
+.isSelected{
+  border-right: 6px solid rgb(246, 3, 149);
+}
+.favourite-btn{
+  position: relative;
+  left: 80%;
+  bottom: 64%;
+}

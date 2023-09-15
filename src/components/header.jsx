@@ -45,7 +45,7 @@ export const Header = () => {
         <div className=' flex'>
             <input type="text"
             className=' rounded-lg pl-3 tablet:pr-36 py-2 bg-transparent border-4 border-white text-white font-bold' 
-            placeholder='search a movie'
+            placeholder='what do you want to watch?'
             value={search}
             onChange={e=>setSearch(e.currentTarget.value)} />
             <button 
@@ -55,21 +55,21 @@ export const Header = () => {
             </button>
         </div>
         <div className=' tablet:flex items-center mobile:hidden'>
-            <a href="#" className=' text-white'>Sign in</a>
+            <a href="#" className=' text-white font-medium mr-2'>Sign in</a>
             <img src={image2} alt='menu' />
         </div>
       </nav>
       <div className=' relative z-20 bottom-[530px] px-8 py-7 tablet:w-1/3 mobile:w-full'>
         <h1 className=' text-3xl font-semibold text-white'>{title}</h1>
         <div className=' text-white flex my-4 font-medium'>
-            <img src={imdbicon} alt="imdbicon"  />
-            <span>{vote_average}/10.0</span>
-            <img src={tomatoesicon} alt="tomatoesicon" className=' ml-5' />
+            <img src={imdbicon} alt="imdbicon" className=' mr-1' />
+            <span className=' mr-4'>{vote_average.toFixed(1)}/10.0</span>
+            <img src={tomatoesicon} alt="tomatoesicon" className=' mr-1' />
             <span>{percentage.toFixed(0)}%</span>
         </div>
         <div>
-            <p className=' text-white font-medium mb-2 '>{overview}</p>
-            <button className=' flex text-white font-semibold bg-pink-600 rounded-lg px-5 py-2'>
+            <p className=' text-white font-medium mobile:text-xs tablet:text-base mb-2 '>{overview}</p>
+            <button className=' flex items-center text-white font-semibold bg-pink-600 rounded-lg px-5 py-2'>
                 <img src={playIcon} alt="play-icon" srcset="" />
                 watch trailer
             </button>

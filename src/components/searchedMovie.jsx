@@ -8,6 +8,7 @@ import '../App.css'
 
 export const SearchedMovie = () => {
     const [searchedVideos, setsearchedVideos] = useState([])
+    const [favouritedMovie2, setfavouritedMovie2] = useState('')
     const { searchTerm} = useParams()
     useEffect(()=>{
         fetchData(`/3/search/movie?query=${searchTerm}`).then(data=>{
@@ -27,10 +28,12 @@ export const SearchedMovie = () => {
                 const posterPath = item.poster_path
                 const posterUrl = `https://image.tmdb.org/t/p/w500${posterPath}`
                 const percentage = item.vote_average/0.1
+                const favourite2 = item.title == favouritedMovie2 ? ' text-red-700' :'text-gray-700'
                 return(
                     <div key={index} className=' w-48 duration-150 ease-in-out hover:scale-110 ' data-testid='movie-card'>
                         <Link to={`/movie/${item.id}`}>
                             <img src={posterUrl} alt={`${item.title} poster`} className=' rounded-lg ' data-testid='movie-poster' />
+                            <AiFillHeart className={` favourite-btn ${favourite2} hover:animate-pulse text-4xl`} onClick={()=>setfavouritedMovie2(item.title)}/>
                             <p className=' text-sm text-slate-500 font-medium my-3 px-3' data-testid='movie-release-date'  >
                                 release date: {item.release_date}
                             </p>
