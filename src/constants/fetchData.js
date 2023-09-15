@@ -10,6 +10,23 @@ const options = {
     }
   };
 
+
+  const dataUrl2 = 'https://youtube-v31.p.rapidapi.com'
+
+
+const options2 = {
+    params: {
+      part: 'snippet,id',
+      maxResults: '50',
+      
+    },
+    headers: {
+      'X-RapidAPI-Key': '175522c218msh23f453fa53cebaep104b68jsn5acb452ab8ba',
+      'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
+    }
+  };
+  
+
 export const fetchData = async(endpoint)=>{
     try {
         const {data} = await axios.get(`${dataUrl}/${endpoint}`, options);
@@ -19,4 +36,14 @@ export const fetchData = async(endpoint)=>{
         console.log(error)
         alert(error.message)
     }
+}
+
+export const FetchData2 = async(url)=>{
+  // destructring the data instead of response.data 
+  try {
+    const {data} = await axios.get(`${dataUrl2}/${url}`,options2)
+    return data
+  } catch (error) {
+    return error
+  }
 }
