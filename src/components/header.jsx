@@ -63,7 +63,7 @@ export const Header = () => {
         <h1 className=' text-3xl font-semibold text-white'>{title}</h1>
         <div className=' text-white flex my-4 font-medium'>
             <img src={imdbicon} alt="imdbicon" className=' mr-1' />
-            <span className=' mr-4'>{vote_average.toFixed(1)}/10.0</span>
+            <span className=' mr-4'>{vote_average}/10.0</span>
             <img src={tomatoesicon} alt="tomatoesicon" className=' mr-1' />
             <span>{percentage.toFixed(0)}%</span>
         </div>

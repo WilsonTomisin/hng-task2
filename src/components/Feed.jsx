@@ -68,7 +68,7 @@ export const Feed = () => {
                                 <h1 className=' text-2xl font-semibold ' data-testid='movie-title' >{item.title}</h1>
                                 <div className=' text-black font-medium text-sm flex my-4'>
                                     <img src={imdbicon} alt="imdb"  />
-                                    <span>{item.vote_average.toFixed(1)}/10.0</span>
+                                    <span>{item.vote_average}/10.0</span>
                                     <img src={tomatoesicon} alt="tomatoes" className=' ml-5' />
                                     <span>{percentage.toFixed(0)}%</span>
                                 </div>
